@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Reposicionamento Estratégico | NEXO IA Talentos - Modelo Demonstrativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --nexo-blue: #0066A1;
+            --nexo-cyan: #00B4D8;
+            --nexo-dark: #1a1a2e;
+            --nexo-darker: #0f0f1a;
+            --nexo-light: #f8fafc;
+            --nexo-cream: #F5F0E8;
+            --nexo-gold: #D4A574;
+            --nexo-green: #10B981;
+            --nexo-red: #EF4444;
+            --nexo-yellow: #F59E0B;
+            --gradient-primary: linear-gradient(135deg, var(--nexo-blue) 0%, var(--nexo-cyan) 100%);
+            --gradient-dark: linear-gradient(180deg, var(--nexo-darker) 0%, var(--nexo-dark) 100%);
+            --shadow-soft: 0 4px 20px rgba(0, 102, 161, 0.15);
+            --shadow-strong: 0 10px 40px rgba(0, 0, 0, 0.2);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--nexo-darker);
+            color: var(--nexo-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            background: linear-gradient(90deg, var(--nexo-gold) 0%, #E8C49A 50%, var(--nexo-gold) 100%);
+            color: var(--nexo-darker);
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .demo-banner span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .demo-badge {
+            background: var(--nexo-darker);
+            color: var(--nexo-gold);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            background: var(--gradient-dark);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 180, 216, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(0, 102, 161, 0.08) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(5deg); }
+            66% { transform: translate(-20px, 20px) rotate(-5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .logo-container {
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--nexo-cyan);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 16px 32px;
+            border-radius: var(--radius-xl);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-soft);
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 180, 216, 0.3);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Profile Card */
+        .profile-section {
+            padding: 80px 20px;
+            background: var(--nexo-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .profile-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .profile-avatar {
+            width: 180px;
+            height: 180px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .profile-avatar::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--nexo-cyan);
+            opacity: 0.3;
+        }
+
+        .profile-info h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .profile-role {
+            color: var(--nexo-cyan);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .profile-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .profile-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .profile-detail-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 180, 216, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        /* Deliverables Section */
+        .deliverables-section {
+            padding: 80px 20px;
+            background: var(--nexo-darker);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .deliverable-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deliverable-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .deliverable-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-4px);
+            border-color: rgba(0, 180, 216, 0.3);
+        }
+
+        .deliverable-card:hover::before {
+            opacity: 1;
+        }
+
+        .deliverable-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 180, 216, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .deliverable-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .deliverable-card p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 80px 20px;
+            background: var(--nexo-dark);
+        }
+
+        .timeline-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-tab {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .timeline-tab:hover,
+        .timeline-tab.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+        }
+
+        .timeline-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .timeline-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .week-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .week-number {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .week-title h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .week-title p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .week-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .week-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .week-column {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .column-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .column-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .column-icon.ai {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+        }
+
+        .column-icon.human {
+            background: linear-gradient(135deg, var(--nexo-blue) 0%, var(--nexo-cyan) 100%);
+        }
+
+        .column-header h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .column-header span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .week-column ul {
+            list-style: none;
+        }
+
+        .week-column li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .week-column li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--nexo-cyan);
+        }
+
+        .week-deliverables {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(0, 180, 216, 0.05);
+            border: 1px solid rgba(0, 180, 216, 0.15);
+            border-radius: var(--radius-md);
+        }
+
+        .week-deliverables h5 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            color: var(--nexo-cyan);
+        }
+
+        .deliverable-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .deliverable-check {
+            color: var(--nexo-green);
+            font-weight: bold;
+        }
+
+        /* Results Preview */
+        .results-section {
+            padding: 80px 20px;
+            background: var(--nexo-darker);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .result-card {
+            background: linear-gradient(145deg, rgba(0, 180, 216, 0.08) 0%, rgba(0, 102, 161, 0.04) 100%);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .result-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Methodology Section */
+        .methodology-section {
+            padding: 80px 20px;
+            background: var(--nexo-dark);
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .methodology-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .methodology-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 180, 216, 0.1) 0%, transparent 70%);
+        }
+
+        .methodology-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .methodology-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .methodology-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Note Section */
+        .note-section {
+            padding: 60px 20px;
+            background: var(--nexo-darker);
+        }
+
+        .note-card {
+            background: linear-gradient(145deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.02) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .note-card {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
+
+        .note-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--nexo-yellow);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .note-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--nexo-yellow);
+        }
+
+        .note-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 20px;
+            background: var(--nexo-darker);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 32px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--nexo-cyan);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: var(--shadow-strong);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        <span>
+            <span class="demo-badge">📋 Modelo Demonstrativo</span>
+            Este é um exemplo ilustrativo do programa. Dados fictícios para fins de apresentação.
+        </span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo-container">
+                <div class="logo-text">NEXO IA TALENTOS</div>
+                <div class="logo-subtitle">IA Responsável • Decisões Humanas</div>
+            </div>
+            
+            <h1>Programa de <span>Reposicionamento Estratégico</span></h1>
+            
+            <p class="hero-description">
+                Um programa completo de 12 semanas que combina ciência psicológica, filosofia do autoconhecimento 
+                e inteligência artificial para transformar sua trajetória profissional com método e propósito.
+            </p>
+            
+            <div class="hero-tags">
+                <span class="hero-tag">🧠 Ciência Psicológica</span>
+                <span class="hero-tag">📖 Filosofia do Autoconhecimento</span>
+                <span class="hero-tag">🤖 Inteligência Artificial</span>
+            </div>
+            
+            <a href="#programa" class="cta-button">
+                Conhecer o Programa
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-card">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-info">
+                    <h2>Cliente Exemplo</h2>
+                    <p class="profile-role">Engenheiro de Manutenção em Transição de Carreira</p>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.95rem;">
+                        Profissional com 15+ anos de experiência em manutenção industrial, buscando 
+                        reposicionamento para cargo de gestão. Este é um perfil ilustrativo que demonstra 
+                        como o programa se adapta às necessidades individuais de cada mentorado.
+                    </p>
+                    <div class="profile-details">
+                        <div class="profile-detail">
+                            <span class="profile-detail-icon">📍</span>
+                            <span>Região Centro-Oeste</span>
+                        </div>
+                        <div class="profile-detail">
+                            <span class="profile-detail-icon">🏭</span>
+                            <span>Setor: Agroindústria</span>
+                        </div>
+                        <div class="profile-detail">
+                            <span class="profile-detail-icon">🎯</span>
+                            <span>Meta: Gestão de Manutenção</span>
+                        </div>
+                        <div class="profile-detail">
+                            <span class="profile-detail-icon">⏱️</span>
+                            <span>Programa: 12 semanas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables Section -->
+    <section id="programa" class="deliverables-section">
+        <div class="container">
+            <h2 class="section-title">🎯 Entregas Principais do Programa</h2>
+            
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📊</div>
+                    <h3>Diagnóstico de Carreira e Posicionamento</h3>
+                    <p>Análise profunda da trajetória, competências e objetivos para definir o melhor caminho.</p>
+                </div>
+                
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📝</div>
+                    <h3>Revisão Estratégica de Currículo e LinkedIn</h3>
+                    <p>Otimização completa dos materiais para maximizar visibilidade e atratividade.</p>
+                </div>
+                
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🎤</div>
+                    <h3>Preparação para Entrevistas</h3>
+                    <p>Treinamento estruturado com método STAR e simulações para diferentes públicos.</p>
+                </div>
+                
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🧬</div>
+                    <h3>Avaliação Comportamental Completa</h3>
+                    <p>Aplicação e devolutiva aprofundada de assessment (DISC ou equivalente).</p>
+                </div>
+                
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🤖</div>
+                    <h3>Agente de IA Personalizado (Copiloto NEXO IA)</h3>
+                    <p>Assistente inteligente treinado no seu perfil para suporte contínuo entre sessões.</p>
+                </div>
+                
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📈</div>
+                    <h3>Gestão do Pipeline de Vagas</h3>
+                    <p>Organização e acompanhamento estratégico de todas as oportunidades em andamento.</p>
+                </div>
+                
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">💬</div>
+                    <h3>Suporte Contínuo por WhatsApp</h3>
+                    <p>Canal direto para dúvidas urgentes e preparação para entrevistas emergenciais.</p>
+                </div>
+                
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🤝</div>
+                    <h3>Indicações Confidenciais</h3>
+                    <p>Ativação estratégica de rede de contatos quando fizer sentido para o processo.</p>
+                </div>
+                
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🔄</div>
+                    <h3>Programa Flexível e Adaptável</h3>
+                    <p>Cronograma que se ajusta ao seu ritmo e às demandas reais do mercado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Preview -->
+    <section class="results-section">
+        <div class="container">
+            <h2 class="section-title">📊 Indicadores de Resultado</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Métricas ilustrativas que demonstram o acompanhamento estruturado do programa.
+            </p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-value">12</div>
+                    <div class="result-label">Semanas de Programa</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-value">2</div>
+                    <div class="result-label">Sessões Semanais (Humana + IA)</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-value">3+</div>
+                    <div class="result-label">Versões de Currículo</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-value">10+</div>
+                    <div class="result-label">Cases STAR Estruturados</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">📅 Cronograma de 12 Semanas</h2>
+            
+            <div class="timeline-tabs">
+                <button class="timeline-tab active" data-week="1">Semana 1</button>
+                <button class="timeline-tab" data-week="2">Semana 2</button>
+                <button class="timeline-tab" data-week="3">Semana 3</button>
+                <button class="timeline-tab" data-week="4">Semana 4</button>
+                <button class="timeline-tab" data-week="5">Semana 5-6</button>
+                <button class="timeline-tab" data-week="6">Semana 7-8</button>
+                <button class="timeline-tab" data-week="7">Semana 9-10</button>
+                <button class="timeline-tab" data-week="8">Semana 11-12</button>
+            </div>
+
+            <!-- Week 1 -->
+            <div class="timeline-content active" data-week="1">
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">1</div>
+                        <div class="week-title">
+                            <h3>Diagnóstico e Construção de Confiança</h3>
+                            <p>Fundação do processo: conhecer a história, o momento e o objetivo</p>
+                        </div>
+                    </div>
+                    
+                    <div class="week-columns">
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon ai">🤖</span>
+                                <div>
+                                    <h4>Copiloto NEXO IA</h4>
+                                    <span>Suporte Tecnológico</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Início suave — nada pesado ainda</li>
+                                <li>1 exemplo simples de análise de vaga</li>
+                                <li>1 case estruturado em STAR para demonstrar o método</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon human">👤</span>
+                                <div>
+                                    <h4>Granato</h4>
+                                    <span>Estratégia Humana</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>História, momento e contexto emocional</li>
+                                <li>Objetivo de cadeira e cenário de vida</li>
+                                <li>Rascunho de posicionamento profissional</li>
+                                <li>Explicação do plano de 12 semanas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="week-deliverables">
+                        <h5>📋 Entregas da Sessão</h5>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Posicionamento Confirmado:</strong> Definição clara do perfil-alvo para busca</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Método STAR:</strong> Introdução à estrutura para respostas de entrevista</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Próximos Passos:</strong> Cronograma personalizado das primeiras 4 semanas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="timeline-content" data-week="2">
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">2</div>
+                        <div class="week-title">
+                            <h3>Currículo e Primeiros Cases</h3>
+                            <p>Construção dos materiais base com foco em resultados concretos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="week-columns">
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon ai">🤖</span>
+                                <div>
+                                    <h4>Copiloto NEXO IA</h4>
+                                    <span>Suporte Tecnológico</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Sugestões de bullets de currículo baseados na experiência</li>
+                                <li>Organização dos primeiros cases em formato STAR</li>
+                                <li>Análise de vagas de referência do mercado</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon human">👤</span>
+                                <div>
+                                    <h4>Granato</h4>
+                                    <span>Estratégia Humana</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Decisão do posicionamento do currículo (título, foco, linguagem)</li>
+                                <li>Validação: as sugestões da IA realmente representam você?</li>
+                                <li>Escolha dos cases "âncora" para entrevistas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="week-deliverables">
+                        <h5>📋 Entregas da Sessão</h5>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Currículo v1:</strong> Primeira versão completa com posicionamento definido</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Cases STAR:</strong> 3-5 histórias estruturadas para entrevistas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="timeline-content" data-week="3">
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">3</div>
+                        <div class="week-title">
+                            <h3>Currículo Final, LinkedIn e Assessment</h3>
+                            <p>Finalização dos materiais e início da análise comportamental</p>
+                        </div>
+                    </div>
+                    
+                    <div class="week-columns">
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon ai">🤖</span>
+                                <div>
+                                    <h4>Copiloto NEXO IA</h4>
+                                    <span>Suporte Tecnológico</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Refinar resumo profissional para diferentes vagas</li>
+                                <li>Sugerir textos de "Sobre" e "Experiências" para LinkedIn</li>
+                                <li>Otimização para algoritmos de busca</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon human">👤</span>
+                                <div>
+                                    <h4>Granato</h4>
+                                    <span>Estratégia Humana</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Bater o martelo na versão final do currículo</li>
+                                <li>Ajustar LinkedIn para coerência com a estratégia</li>
+                                <li>Aplicar assessment e explicar propósito da avaliação</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="week-deliverables">
+                        <h5>📋 Entregas da Sessão</h5>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Currículo Final:</strong> Versão aprovada e pronta para uso</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>LinkedIn Otimizado:</strong> Perfil alinhado com posicionamento</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Assessment Aplicado:</strong> Avaliação comportamental em andamento</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="timeline-content" data-week="4">
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">4</div>
+                        <div class="week-title">
+                            <h3>Devolutiva Comportamental e Domínio do Copiloto</h3>
+                            <p>Autoconhecimento profundo e autonomia no uso da IA</p>
+                        </div>
+                    </div>
+                    
+                    <div class="week-columns">
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon ai">🤖</span>
+                                <div>
+                                    <h4>Copiloto NEXO IA</h4>
+                                    <span>Suporte Tecnológico</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Análise detalhada de vagas de interesse</li>
+                                <li>Comparação vaga × perfil do candidato</li>
+                                <li>Sugestões de ajustes de currículo por vaga</li>
+                                <li>Respostas STAR customizadas</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon human">👤</span>
+                                <div>
+                                    <h4>Granato</h4>
+                                    <span>Estratégia Humana</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Devolutiva do assessment: leitura profunda e aplicada</li>
+                                <li>Conectar perfil + trajetória + tipo de empresa</li>
+                                <li>Ensinar "como pensar" usando o Copiloto</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="week-deliverables">
+                        <h5>📋 Entregas da Sessão</h5>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Relatório Comportamental:</strong> Devolutiva completa com insights aplicados</span>
+                        </div>
+                        <div class="deliverable-item">
+                            <span class="deliverable-check">✓</span>
+                            <span><strong>Autonomia no Copiloto:</strong> Capacidade de usar a IA de forma independente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weeks 5-6 -->
+            <div class="timeline-content" data-week="5">
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">5-6</div>
+                        <div class="week-title">
+                            <h3>Preparação para Entrevistas</h3>
+                            <p>Do RH ao Gestor Técnico — treinamento completo para cada etapa</p>
+                        </div>
+                    </div>
+                    
+                    <div class="week-columns">
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon ai">🤖</span>
+                                <div>
+                                    <h4>Copiloto NEXO IA</h4>
+                                    <span>Suporte Tecnológico</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Simulação de entrevistas com RH e Gestor</li>
+                                <li>Reescrita de respostas em STAR por contexto</li>
+                                <li>Treino de respostas sobre: saída, pretensão, mobilidade</li>
+                                <li>Perguntas técnicas e de liderança</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon human">👤</span>
+                                <div>
+                                    <h4>Granato</h4>
+                                    <span>Estratégia Humana</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Lapidar tom das respostas (sem defensividade)</li>
+                                <li>Cuidar da ansiedade em perguntas-gatilho</li>
+                                <li>Ajustar discurso para mostrar liderança, não só execução</li>
+                                <li>Feedback de mercado: o que pega e o que passa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weeks 7-8 -->
+            <div class="timeline-content" data-week="6">
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">7-8</div>
+                        <div class="week-title">
+                            <h3>Pipeline Ativo e Execução Forte</h3>
+                            <p>Momento de maior intensidade — processos reais em andamento</p>
+                        </div>
+                    </div>
+                    
+                    <div class="week-columns">
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon ai">🤖</span>
+                                <div>
+                                    <h4>Copiloto NEXO IA</h4>
+                                    <span>Suporte Tecnológico</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Cases em versão para diretoria (impacto em custo, risco)</li>
+                                <li>Estruturar e atualizar pipeline de vagas</li>
+                                <li>Mensagens para networking e follow-up</li>
+                                <li>Ajustar currículo para vagas específicas</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon human">👤</span>
+                                <div>
+                                    <h4>Granato</h4>
+                                    <span>Estratégia Humana</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Pré-jogo e pós-jogo das entrevistas reais</li>
+                                <li>Interpretar retornos: feedback, silêncio, sinais</li>
+                                <li>Ensinar leitura estratégica de processo seletivo</li>
+                                <li>Ajustar estratégia se o mercado mostrar outro caminho</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weeks 9-10 -->
+            <div class="timeline-content" data-week="7">
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">9-10</div>
+                        <div class="week-title">
+                            <h3>Fases Finais e Decisões</h3>
+                            <p>Comitês, propostas e navegação estratégica de ofertas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="week-columns">
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon ai">🤖</span>
+                                <div>
+                                    <h4>Copiloto NEXO IA</h4>
+                                    <span>Suporte Tecnológico</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Simular entrevistas de fases finais</li>
+                                <li>Preparar cases "premium" para apresentações</li>
+                                <li>Organizar prós e contras das propostas</li>
+                                <li>Comparativos estruturados de oportunidades</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon human">👤</span>
+                                <div>
+                                    <h4>Granato</h4>
+                                    <span>Estratégia Humana</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Postura, segurança e coerência em momentos críticos</li>
+                                <li>Posicionar-se como par da liderança, não executor</li>
+                                <li>Conversa de igual para igual: vida, dinheiro, família, futuro</li>
+                                <li>Ativar indicações confidenciais se fizer sentido</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weeks 11-12 -->
+            <div class="timeline-content" data-week="8">
+                <div class="week-card">
+                    <div class="week-header">
+                        <div class="week-number">11-12</div>
+                        <div class="week-title">
+                            <h3>Entrada e Fechamento</h3>
+                            <p>Preparação para os primeiros 90 dias ou replanejamento estratégico</p>
+                        </div>
+                    </div>
+                    
+                    <div class="week-columns">
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon ai">🤖</span>
+                                <div>
+                                    <h4>Copiloto NEXO IA</h4>
+                                    <span>Suporte Tecnológico</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Estruturar planos de 30/60/90 dias</li>
+                                <li>Simular conversas difíceis iniciais</li>
+                                <li>Registrar aprendizados do processo</li>
+                                <li>Montar plano de desenvolvimento contínuo</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-column">
+                            <div class="column-header">
+                                <span class="column-icon human">👤</span>
+                                <div>
+                                    <h4>Granato</h4>
+                                    <span>Estratégia Humana</span>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>Ajustar expectativas: sucesso nos primeiros 3 meses</li>
+                                <li>Orientar sobre leitura de cultura e política interna</li>
+                                <li>Fechar ciclo com visão de carreira, não só de vaga</li>
+                                <li>Se necessário: redesenhar a rota com maturidade</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="methodology-section">
+        <div class="container">
+            <h2 class="section-title">🔬 Metodologias NEXO IA</h2>
+            
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <div class="methodology-icon">🎯</div>
+                    <h3>Método STAR</h3>
+                    <p>Estruturação de respostas para entrevistas em quatro dimensões: Situação, Tarefa, Ação e Resultado. Cada case é lapidado para demonstrar impacto concreto e capacidade de entrega.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <div class="methodology-icon">🧬</div>
+                    <h3>Assessment Comportamental</h3>
+                    <p>Avaliação profunda do perfil comportamental com devolutiva aplicada ao contexto profissional. Autoconhecimento como base para decisões de carreira mais assertivas.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <div class="methodology-icon">🤖</div>
+                    <h3>Copiloto NEXO IA</h3>
+                    <p>Agente de IA personalizado que conhece seu perfil, histórico e objetivos. Suporte contínuo entre sessões para análise de vagas, simulações e preparação específica.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <div class="methodology-icon">⚖️</div>
+                    <h3>IA Responsável</h3>
+                    <p>Tecnologia como ferramenta de suporte, nunca como substituta da decisão humana. Governança clara sobre o uso de IA em todo o processo de mentoria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Note Section -->
+    <section class="note-section">
+        <div class="container">
+            <div class="note-card">
+                <div class="note-icon">⚠️</div>
+                <div class="note-content">
+                    <h4>Observação Importante</h4>
+                    <p>Sempre que surgir uma entrevista importante, o plano pode ser ajustado para priorizar a preparação específica para esse processo. O cronograma existe para dar previsibilidade e clareza, não para engessar o movimento. A flexibilidade é parte essencial da metodologia NEXO IA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">NEXO IA TALENTOS</div>
+            <p class="footer-tagline">Ciência Psicológica • Filosofia do Autoconhecimento • Inteligência Artificial</p>
+            
+            <div class="footer-links">
+                <a href="https://wa.me/5531992414791" class="footer-link" target="_blank">
+                    📱 WhatsApp: (31) 99241-4791
+                </a>
+                <a href="https://instagram.com/nexoiatalentos" class="footer-link" target="_blank">
+                    📸 @nexoiatalentos
+                </a>
+                <a href="https://linkedin.com/in/viniciusgranato" class="footer-link" target="_blank">
+                    💼 LinkedIn
+                </a>
+            </div>
+            
+            <p class="footer-copyright">
+                © 2025 NEXO IA Talentos. Todos os direitos reservados.<br>
+                <em style="color: var(--nexo-gold);">Este é um modelo demonstrativo com dados fictícios para fins de apresentação.</em>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <script>
+        // Timeline Tabs
+        const tabs = document.querySelectorAll('.timeline-tab');
+        const contents = document.querySelectorAll('.timeline-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const week = tab.dataset.week;
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.querySelector(`.timeline-content[data-week="${week}"]`).classList.add('active');
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
